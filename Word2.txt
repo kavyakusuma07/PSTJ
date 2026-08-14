@@ -1,0 +1,34 @@
+import java.util.*;
+public class Word2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), m = sc.nextInt();
+        List<List<Integer>> g = new ArrayList<>();
+        for (int i = 0; i < n; i++) g.add(new ArrayList<>());
+        for (int i = 0; i < m; i++) {
+            int u = sc.nextInt(), v = sc.nextInt();
+            g.get(u).add(v);
+            g.get(v).add(u);
+        }
+        int s = sc.nextInt(), d = sc.nextInt();
+        boolean[] visited = new boolean[n];
+        Queue<Integer> q = new LinkedList<>();
+        q.add(s);
+        visited[s] = true;
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            if (u == d) {
+                System.out.println("YES");
+                return;
+            }
+
+            for (int v : g.get(u))
+                if (!visited[v]) {
+                    visited[v] = true;
+                    q.add(v);
+                }
+        }
+
+        System.out.println("NO");
+    }
+}
