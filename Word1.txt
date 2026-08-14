@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Word1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Map<String, Integer> map = new HashMap<>();
+
+        while (n-- > 0) {
+            String hashtag = sc.next();
+            map.put(hashtag, map.getOrDefault(hashtag, 0) + 1);
+        }
+
+        map.forEach((key, value) ->
+            System.out.println(key + " " + value)
+        );
+    }
+}
